@@ -1,0 +1,29 @@
+CREATE DATABASE portafolio;
+
+USE portafolio;
+
+CREATE TABLE usuarios (
+  id INT NOT NULL AUTO_INCREMENT,
+  nombre VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  password VARCHAR(255) NOT NULL,
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE habilidades (
+  id INT NOT NULL AUTO_INCREMENT,
+  nombre VARCHAR(255) NOT NULL,
+  usuario_id INT NOT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE CASCADE
+);
+
+CREATE TABLE proyectos (
+  id INT NOT NULL AUTO_INCREMENT,
+  titulo VARCHAR(255) NOT NULL,
+  descripcion TEXT NOT NULL,
+  imagen VARCHAR(255) NOT NULL,
+  usuario_id INT NOT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE CASCADE
+);
