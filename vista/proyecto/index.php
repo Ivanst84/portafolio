@@ -1,51 +1,45 @@
 
 <?php require_once '../../controlador/proyecto.php'?>
+  <!-- otros elementos head -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+    crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"
+    integrity="sha384-g2/ebR0raWWAvi1VKOcfn0mOSXWcS60Zo2Qxg0/lui01BRsW4UC4d4mJ0Fg1Uu9C"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+    crossorigin="anonymous"></script>
+
+
+<link rel="stylesheet" href="../../public/estilos.css">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
 
-<!-- Agregar tu archivo CSS personalizado -->
-<link rel="stylesheet" href="../../public/estilos.css">
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <head>
 <?php require_once("../html/mainHeader.php"); ?>
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"></script>
 </head>
 
 <body>
 <?php require_once("../html/mainMenu.php"); ?>
-<div class="modal fade" id="modalProyecto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Título del proyecto</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <img src="IMAGEN DEL PROYECTO" class="img-fluid" alt="...">
-        <p>Descripción del proyecto</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <a href="ENLACE AL PROYECTO" class="btn btn-primary">Ir al proyecto</a>
-      </div>
-    </div>
-  </div>
-</div>
+
 
 <div class="container">
   <div class="row mx-auto row-cols-3">
     <?php foreach ($proyectos as $proyecto) { ?>
       <?php
-        $colores = array(
+        $colores = array( // se creo un array de colres para cada ves que entre el for cambie de color el car
           "linear-gradient(to bottom right, #8A2BE2, #4B0082)",
           "linear-gradient(to bottom right, #FFA07A, #CD5C5C)",
           "linear-gradient(to bottom right, #00CED1, #00FA9A)",
           "linear-gradient(to bottom right, #FFD700, #FF8C00)"
         );
-        $color = $colores[array_rand($colores)];
+        $color = $colores[array_rand($colores)]; // randum de colores
       ?>
       <div class="col mb-4">
         <div class="card" style="background: <?php echo $color; ?>;"> 
@@ -59,26 +53,8 @@
       </div>
     <?php } ?>
   </div>
+ 
+
 </div>
-<!-- jQuery -->
-<script>
-  $(document).ready(function() {
-    $('.btn-primary').click(function(e) {
-      e.preventDefault();
-      var title = $(this).siblings('.card-title').text();
-      var imgSrc = $(this).siblings('.card-img-top').attr('src');
-      var description = $(this).siblings('.card-text').text();
-      var link = $(this).attr('href');
-      $('#modalProyecto .modal-title').text(title);
-      $('#modalProyecto .modal-body img').attr('src', imgSrc);
-      $('#modalProyecto .modal-body p').text(description);
-      $('#modalProyecto .modal-footer a').attr('href', link);
-      $('#modalProyecto').modal('show');
-    });
-  });
-  $(document).ready(function() {
-    $('.card').click(function() {
-      $(this).toggleClass('border-primary');
-    });
-  });
-</script>
+<?php require_once 'modal.php'?><!-- jQuery -->
+<script type="text/javascript" src="proyecto.js"></script>
